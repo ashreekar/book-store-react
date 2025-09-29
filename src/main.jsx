@@ -8,6 +8,8 @@ import { AddBook, BookDetails, BrowseBooks, LandingPage } from "./Components/exp
 // creating the routing configuration
 // Array of Object Route 
 // Outlet is inside App.jsx
+// Route looks like LandigPage,AddPage --> Direct routing
+//                  BrowseBooks,BookDetails-->Dynamic Routing
 const router=createBrowserRouter(
   [
     {
@@ -38,6 +40,7 @@ const router=createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    {/* Added Router provider with the creted routes which are also with its nested childres */}
     <RouterProvider router={router}/>
   </StrictMode>,
 )
