@@ -49,7 +49,7 @@ function LandingPage() {
     <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-white'>
 
       {/* Part One Welcome message */}
-      <div className='text-center mb-6 py-4 border-b border-b-gray-100'>
+      <div className='text-center mb-4 py-4 border-b border-b-gray-100'>
         <h2 className='text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2'>Welcome to the Book Shop</h2>
         <p className='text-lg text-gray-600'> Reading is free unless you are willing to.</p>
       </div>
@@ -87,7 +87,10 @@ function LandingPage() {
 
                   {/* I,age of book */}
                     <div className='mb-4 flex justify-center'>
-                      <img src={book.imageLinks.smallThumbnail || `/schaffausen.jpeg`} alt={book.title} height={"200px"} width={"180px"}
+                      {/* 
+                      Note: use this ""  book.imageLinks.smallThumbnail  instead of '/schaffausen.jpeg' in internedt
+                       */}
+                      <img src={'/schaffausen.jpeg'} alt={book.title} height={"200px"} width={"180px"}
                       className='w-full h-auto object-cover rounded-md shadow-md'
                        />
                     </div>
