@@ -2,7 +2,7 @@ import {configureStore} from "@reduxjs/toolkit"
 import bookReducer from "./booksData.slice.js"
 
  const loadState = () => {
-    const storedS = localStorage.getItem('reduxState');
+    const storedState = localStorage.getItem('reduxState');
     if (storedState === null) return undefined; 
     return JSON.parse(storedState);
 };
