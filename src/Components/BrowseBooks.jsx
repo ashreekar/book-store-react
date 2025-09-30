@@ -88,7 +88,7 @@ function BrowseBooks() {
                 return (
                   // Go back to the home route and add route again
                   <Link to={`../books/${category}`} key={category}>
-                    <div className={'px-4 py-2 rounded-full text-sm font-medium transition duration-200 shadow-sm bg-gray-100 text-gray-700 hover:bg-gray-200'+(categoryParam.category ===category?"bg-blue-600 text-white hover:bg-blue-300":"bg-gray-100 text-gray-700 hover:bg-gray-200")}>{category}</div>
+                    <div className={'px-4 py-2 rounded-full text-sm font-medium transition duration-200 shadow-sm '+(categoryParam.category ===category?"bg-blue-600 text-white hover:bg-blue-300":"bg-gray-100 text-gray-700 hover:bg-gray-200")}>{category}</div>
                   </Link>
                 )
               })
