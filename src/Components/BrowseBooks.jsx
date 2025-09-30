@@ -49,6 +49,7 @@ function BrowseBooks() {
       return book.title.toLowerCase().includes(seachValue.toLowerCase()) || book.author.toLowerCase().includes(seachValue.toLowerCase());
     })
 
+    setSearchValue("");
     setRenderBooks(searched);
   }
 
@@ -72,13 +73,13 @@ function BrowseBooks() {
           </div>
         </div>
 
-        <button className={`px-4 py-2 mt-2 rounded-full text-sm font-medium transition duration-200 shadow-sm bg-gray-100 text-gray-700 hover:bg-gray-200` + (isFiltervissible ? 'hidden' : '')}>Filter</button>
+           <p className={'flex items-center space-x-2 text-base font-medium text-gray-700 mb-2' }>Showing results for {categoryParam.category}</p>
 
         <div className='mt-2'>
 
-          <div className={'flex items-center space-x-2 text-base font-medium text-gray-700 hover:text-blue-600 transition duration-150 mb-3 focus:outline-none' + (!isFiltervissible ? 'hidden' : '')}>Filter</div>
+          <button className={'flex items-center space-x-2 text-base font-medium text-gray-700 hover:text-blue-600 transition duration-150 mb-3 focus:outline-none cursor-pointer' } onClick={()=>setisFiltervissible(!isFiltervissible)}>{isFiltervissible?"Show filter":"Hide filter"}</button>
 
-          <div className={`flex flex-wrap gap-3` + (!isFiltervissible ? 'hidden' : '')}>
+          <div className={`flex flex-wrap gap-3 ${!isFiltervissible ?'visible': 'hidden' }`}>
             <Link to={'../books/all'}>
               <div className={'px-4 py-2 rounded-full text-sm font-medium transition duration-200 shadow-sm '+(categoryParam.category ==='all'?"bg-blue-600 text-white hover:bg-blue-300":"bg-gray-100 text-gray-700 hover:bg-gray-200")}>all</div>
             </Link>
