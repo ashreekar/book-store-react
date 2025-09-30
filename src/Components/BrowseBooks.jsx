@@ -111,27 +111,32 @@ function BrowseBooks() {
                   renderBooks.map((book) => {
                     return (
                       // Go back to the home route and add route again
-                      <Link to={`../book/${book.id}`}>
-                        <div key={book.id} className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 transition duration-300 hover:shadow-xl cursor-pointer'>
-                          <div className='mb-4 flex justify-center'>
-                            <img src={book.imageLinks.smallThumbnail} alt={book.title}
-                              className='w-full h-auto object-cover rounded-md shadow-md'
-                              height={"200px"}
-                              width={"180px"}
-                            />
-                          </div>
-
-                          <h4 className='text-lg font-semibold text-gray-900 truncate'>{book.title}</h4>
-                          <p className='text-sm text-gray-500 mt-1'>{book.author}</p>
-
-                          <div className='flex items-center mt-2 text-sm'>
-                            <span className='text-amber-500 font-bold mr-1'>
-                              ★
-                            </span>
-                            <p className='text-gray-700'>Rating: {book.rating}</p>
-                          </div>
-                        </div>
-                      </Link>
+                      <Link to={`/book/${book.id}`} key={book.title}>
+                            
+                                 <div key={book.title} className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 transition duration-300 hover:shadow-xl cursor-pointer flex flex-col h-full'>
+                     
+                                   <div className='mb-4 flex justify-center'>
+                                     <img src={book.imageLinks.smallThumbnail} alt={book.title}
+                                 
+                                       className='h-48 w-full object-cover rounded-md shadow-md'
+                                     />
+                                   </div>
+                     
+                                   <div className='flex flex-col flex-grow'>
+                                  
+                                     <h4 className='text-lg font-semibold text-gray-900 truncate'>{book.title}</h4>
+                     
+                                   
+                                     <p className='text-sm text-gray-500 mt-1 truncate'>{book.author}</p>
+                     
+                                     <div className='flex items-center mt-auto pt-2 text-sm'>
+                                       <span className='text-amber-500 font-bold mr-1'>★</span>
+                                       <p>Rating: {book.rating}</p>
+                                     </div>
+                                   </div>
+                     
+                                 </div>
+                               </Link>
                     )
                   })
                 }
