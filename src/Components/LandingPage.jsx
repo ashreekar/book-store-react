@@ -16,7 +16,7 @@ function LandingPage() {
     const uniqueCategory = new Set();
 
     booksData.forEach((book) => {
-      uniqueCategory.add(book.categories);
+      uniqueCategory.add(book.categories.toLowerCase());
     })
 
     setcategory([...uniqueCategory]);
@@ -35,7 +35,7 @@ function LandingPage() {
     }else{
        newBooks=booksData.filter((book,_)=>{
         // Filtering only selected category books
-          return book.categories===firstcategories;
+          return book.categories.toLowerCase()===firstcategories.toLowerCase();
       });
 
          newBooks=newBooks.filter((_,index)=>{

@@ -11,7 +11,7 @@ function BrowseBooks() {
   const [filterBooks, setFilterBooks] = useState([]);
   const [seachValue, setSearchValue] = useState("");
   const [renderBooks, setRenderBooks] = useState(filterBooks);
-  const [isFiltervissible, setisFiltervissible] = useState(false);
+  const [isFiltervissible, setisFiltervissible] = useState(true);
 
   useEffect(() => {
     const uniqueCategory = new Set();
