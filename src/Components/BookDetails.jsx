@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { booksData } from '../utils/bookData';
+// import { booksData } from '../utils/bookData';
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux"
 
 function BookDetails() {
+  const booksData=useSelector(store=>store.books.items);
+
   const bookid = useParams();
 
   const [book, setBook] = useState({});

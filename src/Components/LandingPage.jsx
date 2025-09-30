@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { booksData } from '../utils/bookData.js'
+// import { booksData } from '../utils/bookData.js'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function LandingPage() {
+  const booksData=useSelector(state=>state.books.items);
 
   // different category and books mainly
   const [firstcategories, setfirstcategories] = useState("all");

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { booksData } from '../utils/bookData.js';
+// import { booksData } from '../utils/bookData.js';
+import { useSelector } from 'react-redux';
 
 function BrowseBooks() {
+    const booksData=useSelector(store=>store.books.items);
   const categoryParam = useParams(); // getting category based on Param
 
   const [categories, setCategories] = useState([]);
