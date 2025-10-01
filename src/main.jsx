@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { Router, RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { AddBook, BookDetails, BrowseBooks, LandingPage } from "./Components/export.components.js"
+import { AddBook, BookDetails, BrowseBooks, LandingPage,ErrorElement } from "./Components/export.components.js"
 
 // creating the routing configuration
 // Array of Object Route 
@@ -15,6 +15,7 @@ const router=createBrowserRouter(
     {
       path:'/',
       element:<App/>,
+      errorElement:<ErrorElement/>,
       children:[
         {
           path:"",
