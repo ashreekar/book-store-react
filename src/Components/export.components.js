@@ -5,6 +5,7 @@ import AddBook from "./AddBook";
 import Header from "./Header";
 import Footer from "./Footer";
 import ErrorElement from "./ErrorElement";
+import BookNotFound from "./BookNotFound";
 
 // Added single export file of all components
-export { LandingPage, BrowseBooks, BookDetails, AddBook, Header, Footer,ErrorElement };
+export { LandingPage, BrowseBooks, BookDetails, AddBook, Header, Footer,ErrorElement,BookNotFound };

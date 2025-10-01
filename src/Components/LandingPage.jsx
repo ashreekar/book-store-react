@@ -2,23 +2,28 @@ import React, { useEffect, useState } from 'react'
 // import { booksData } from '../utils/bookData.js'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+// imported useSelector from react-redux
+
 
 function LandingPage() {
+  // getting booksData from store with books slice
   const booksData = useSelector(state => state.books.items);
 
   // different category and books mainly
-  const [firstcategories, setfirstcategories] = useState("all");
-  const [category, setcategory] = useState([]);
-  const [books, setbooks] = useState([]);
+  const [firstcategories, setfirstcategories] = useState("all"); // all is the first category to show up
+  const [category, setcategory] = useState([]); // array of categories (limited) tp render
+  const [books, setbooks] = useState([]);  // books matching categpries will end up here
 
   // Set categories that we need to show
   useEffect(() => {
-    const uniqueCategory = new Set();
+    const uniqueCategory = new Set(); // for storing unique categories and not to repeat them
 
+    // added category showing category might duplicate for same name so toLowerCase()
     booksData.forEach((book) => {
       uniqueCategory.add(book.categories.toLowerCase());
     })
 
+    // setting categories to unique category
     setcategory([...uniqueCategory]);
   }, [])
 
@@ -65,7 +70,9 @@ function LandingPage() {
           >All</li>
 
           {
+            // rendering different categories
             category.map((each, index) => {
+              // just checking it is less than or 5 (only 5 top category appears)
               return index <= 4 && (
                 <li key={each} onClick={() => setfirstcategories(each)}
                   className={firstcategories === each ? 'cursor-pointer px-4 py-2 rounded-lg bg-blue-500 text-white font-medium shadow-md hover:bg-blue-600 transition' : 'cursor-pointer px-4 py-2 rounded-lg bg-gray-100 text-gray-700 font-medium hover:bg-gray-200 transition'}
@@ -83,13 +90,16 @@ function LandingPage() {
 
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6'>
           {
+            // showing all books in selected category
             books.map((book) => {
               return (
+                // Adding link to separate book details
                 <Link to={`/book/${book.id}`} key={book.title}>
 
                   <div key={book.title} className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 transition duration-300 hover:shadow-xl cursor-pointer flex flex-col h-full'>
 
                     <div className='mb-4 flex justify-center'>
+                      {/* two types of thubnail exists but taking input as one */}
                       <img src={book.imageLinks.smallThumbnail} alt={book.title}
 
                         className='h-48 w-full object-cover rounded-md shadow-md'

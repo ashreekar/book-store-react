@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addBook } from '../stateUtil/booksData.slice.js'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
 
 function AddBook() {
-    const booksData = useSelector(store => store.books.items);
+    // states that stores book deatils
+    const booksData = useSelector(store => store.books.items); //fetching book data to show different categories
     const [name, setname] = useState("")
     const [author, setauthor] = useState("")
     const [date, setdate] = useState("")
@@ -18,7 +18,7 @@ function AddBook() {
 
     useEffect(() => {
         const uniqueCategory = new Set();
-
+        // setting new category
         booksData.forEach((book) => {
             uniqueCategory.add(book.categories.split().join('').toLowerCase());
         })
@@ -26,11 +26,12 @@ function AddBook() {
         setCategories([...uniqueCategory]);
     }, [])
 
+    // state to warn if bad entry goes , sucess on suceesful upload and showing dynamic reason of rejection
     const [warn, setWarn] = useState(false);
     const [sucess, setSucess] = useState(false);
     const [reasonRejction, setreasonRejction] = useState("")
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();  // method to dispatch action to redux store
 
     function addBooktoMarket() {
 
@@ -48,18 +49,21 @@ function AddBook() {
             return;
         }
 
-        if(rating==0 || rating > 5){
+        // check rating range
+        if (rating == 0 || rating > 5) {
             setWarn(true);
             setreasonRejction("rating");
             return;
         }
 
-        if(description.length < 20 || description.length >150){
+        // check how descriptive it is
+        if (description.length < 20 || description.length > 150) {
             setWarn(true);
             setreasonRejction("description");
             return;
         }
 
+        // setting up new object to dispatch as a payload
         const newBook = {
             "id": Date.now(),
             "title": name,
@@ -73,8 +77,9 @@ function AddBook() {
             },
             "rating": rating
         }
+        // addBook is a reducer fn that will recieve newbook action
         dispatch(addBook(newBook));
-        setSucess(true);
+        setSucess(true); // shows sucees message on update
     }
     return (
         <div className='max-w-5xl mx-auto px-2 sm:px-2 lg:px-4 py-4'>
@@ -83,6 +88,7 @@ function AddBook() {
                     Add New Book to Market
                 </h3>
 
+{/* Setting up form */}
                 <form
                     className='flex flex-col items-center gap-2'
                     onSubmit={(e) => {
@@ -90,7 +96,7 @@ function AddBook() {
                         addBooktoMarket(e);
                     }}
                 >
-
+{/* Book name */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="bookName" className='block text-sm font-medium text-gray-700 mb-1'>Book Title</label>
                         <input
@@ -105,6 +111,7 @@ function AddBook() {
                         />
                     </div>
 
+{/* Author name */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="authorName" className='block text-sm font-medium text-gray-700 mb-1'>Author Name</label>
                         <input
@@ -118,7 +125,7 @@ function AddBook() {
                             required
                         />
                     </div>
-
+{/* Publicattion date */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="publishedDate" className='block text-sm font-medium text-gray-700 mb-1'>Published Date</label>
                         <input
@@ -131,7 +138,7 @@ function AddBook() {
                             required
                         />
                     </div>
-
+{/* category of book */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="category" className='block text-sm font-medium text-gray-700 mb-1'>Category</label>
                         <select
@@ -142,15 +149,17 @@ function AddBook() {
                             onChange={(e) => setcategory(e.target.value)}
                             required
                         >
+                            {/* Default opton cant be selected */}
                             <option value="" disabled>Select Category</option>
                             {
+                                // rendering different categories
                                 categories.map((cat) => (
                                     <option value={cat} key={cat}>{cat}</option>
                                 ))
                             }
                         </select>
                     </div>
-
+{/* image link can be added */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="imageLink" className='block text-sm font-medium text-gray-700 mb-1'>Cover Image Link (URL)</label>
                         <input
@@ -164,7 +173,7 @@ function AddBook() {
                             required
                         />
                     </div>
-
+{/* rating field out of 5 */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="rating" className='block text-sm font-medium text-gray-700 mb-1'>Rating (0.0 to 5.0)</label>
                         <input
@@ -181,7 +190,7 @@ function AddBook() {
                             required
                         />
                     </div>
-
+{/* description of the book */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="description" className='block text-sm font-medium text-gray-700 mb-1'>Brief Description</label>
                         <textarea
@@ -195,7 +204,7 @@ function AddBook() {
                             required
                         ></textarea>
                     </div>
-
+{/* Button to submit */}
                     <button
                         type="submit"
                         className='mt-4 w-full max-w-lg cursor-pointer outline-none bg-blue-600 
@@ -208,15 +217,16 @@ function AddBook() {
 
             </div>
 
-      
+{/* Rendering these componets on validation error  */}
             <div className={`${warn ? "fixed inset-0 flex items-center justify-center z-50 bg-opacity-40 backdrop-blur-sm" : "hidden"}`}>
                 <div className="flex flex-col text-black font-semibold rounded-xl p-8 max-w-xs w-full shadow-2xl space-y-4 bg-white">
                     <h4 className='text-2xl font-bold mb-2 flex items-center'>
                         Validation Error
                     </h4>
+                    {/* Showingn dynamic reasonn of rejection */}
                     <p>Rejection due to {reasonRejction} field</p>
-                    <p>{reasonRejction=="title"?"Book with title is already exists":(reasonRejction==="rating"?"Rating should be within range of 1 to 5":"Description should have at least 10 characters and at most 200 characters")}</p>
-
+                    <p>{reasonRejction == "title" ? "Book with title is already exists" : (reasonRejction === "rating" ? "Rating should be within range of 1 to 5" : "Description should have at least 10 characters and at most 200 characters")}</p>
+{/* Before closing setting state of warn false so it is again form */}
                     <button
                         onClick={() => setWarn(false)}
                         className='rounded-lg bg-blue-600 text-white font-extrabold outline-none cursor-pointer w-full py-2 hover:bg-blue-600 transition duration-150 shadow-md'
@@ -226,6 +236,7 @@ function AddBook() {
                 </div>
             </div>
 
+{/* On sucees div to render */}
             <div className={`${sucess ? "fixed inset-0 flex items-center justify-center z-50 bg-opacity-40 backdrop-blur-sm" : "hidden"}`}>
                 <div className="flex flex-col text-black font-semibold rounded-xl p-8 max-w-xs w-full shadow-2xl space-y-4 bg-white">
                     <h4 className='text-2xl font-bold mb-2 flex items-center'>

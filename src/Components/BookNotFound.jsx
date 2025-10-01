@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-
+// simple error page for dynamic route of book where book not exists
 function BookNotFound() {
   return (
     <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 min-h-[80vh]'>

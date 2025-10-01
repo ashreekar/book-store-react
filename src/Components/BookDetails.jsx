@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 // import { booksData } from '../utils/bookData';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux"
-import BookNotFound from './BookNotFound';
+import {BookNotFound} from "./export.components.js"
 
 function BookDetails() {
   const booksData = useSelector(store => store.books.items);
@@ -12,9 +12,10 @@ function BookDetails() {
 
   const [book, setBook] = useState({});
   const [load, setLoad] = useState(true);
-  const [bookNotFound,setBookNotfound]=useState(false);
+  const [bookNotFound,setBookNotfound]=useState(false);  // if book not exists this state will be updated
 
   useEffect(() => {
+    // filetring the exact book by id found by params
     const filteredBook = booksData.filter((book) => {
       return book.id === Number(bookid.id);
     });
@@ -25,7 +26,7 @@ function BookDetails() {
     setLoad(false);
   }, [bookid])
 
-
+// showing loading effect of book
   if (load) {
     return <div className='flex justify-center items-center h-screen'>
       <p className='text-xl text-gray-600'>Loading book details...</p>
@@ -33,6 +34,7 @@ function BookDetails() {
   }
 
   return (
+    // if book not found state updated then render BookNotFound component
     bookNotFound?<BookNotFound/>:
     <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
       <div className='flex flex-col md:flex-row bg-white rounded-xl shadow-2xl p-6 md:p-10 border border-gray-100'>

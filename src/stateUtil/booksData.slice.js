@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// new slice of bookdata created
 const booksData = createSlice({
     name: "Books",
+    // prelloaded initial state have items of data
     initialState: {
         items: [
             {
@@ -657,11 +659,12 @@ const booksData = createSlice({
         ],
     },
     reducers: {
+        // one action is required
         addBook: (state, action) => {
             state.items.unshift(action.payload);
         }
     }
 })
-
+// exporting the action by named and booksdata.reducer ad default
 export const {addBook} = booksData.actions;
 export default booksData.reducer;

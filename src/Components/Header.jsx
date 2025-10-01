@@ -9,6 +9,7 @@ function Header() {
         </div>
 
         <nav>
+          {/* Just added link to different routes like books with default category as all and add book and home */}
             <ul className='flex space-x-6 text-sm font-medium'>
                 <Link to={'/'}>
                 <li className='cursor-pointer text-gray-600 hover:text-blue-600 transition duration-150 ease-in-out'>Home</li>

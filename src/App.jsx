@@ -12,6 +12,7 @@ function App() {
       <Provider store={appStore}>
         {/* Created a app store with single slice of name book slice */}
         <Header />
+        {/* Outlet for showing routes within header and footer */}
         <Outlet />
         <Footer />
       </Provider>

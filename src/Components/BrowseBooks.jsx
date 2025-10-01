@@ -4,7 +4,8 @@ import { useParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 function BrowseBooks() {
-    const booksData=useSelector(store=>store.books.items);
+  // geeting books data from books slice of book stoore
+  const booksData = useSelector(store => store.books.items);
   const categoryParam = useParams(); // getting category based on Param
 
   const [categories, setCategories] = useState([]);
@@ -12,10 +13,11 @@ function BrowseBooks() {
   const [seachValue, setSearchValue] = useState("");
   const [renderBooks, setRenderBooks] = useState(filterBooks);
   const [isFiltervissible, setisFiltervissible] = useState(true);
+  // is filter visible is to hided and show filters dynamically
 
   useEffect(() => {
     const uniqueCategory = new Set();
-
+    // logic for getting unique category
     booksData.forEach((book) => {
       uniqueCategory.add(book.categories.split().join('').toLowerCase());
     })
@@ -26,9 +28,11 @@ function BrowseBooks() {
   useEffect(() => {
     let newBooks = [];
 
+    // if not any filter show all books
     if (categoryParam.category === 'all') {
       newBooks = booksData;
     } else {
+      // if category exists show the needed books
       newBooks = booksData.filter((book, _) => {
         // Filtering only selected category books
         return book.categories.split().join('').toLowerCase() === categoryParam.category.split().join('').toLowerCase();
@@ -47,7 +51,9 @@ function BrowseBooks() {
       return;
     }
 
+    // filteriing the seached book on button clcik
     const searched = filterBooks.filter((book) => {
+      // just converting all to lower case to make sure both matches
       return book.title.toLowerCase().includes(seachValue.toLowerCase()) || book.author.toLowerCase().includes(seachValue.toLowerCase());
     })
 
@@ -75,23 +81,25 @@ function BrowseBooks() {
           </div>
         </div>
 
-           <p className={'flex items-center space-x-2 text-base font-medium text-gray-700 mb-2' }>Showing results for {categoryParam.category}</p>
+        <p className={'flex items-center space-x-2 text-base font-medium text-gray-700 mb-2'}>Showing results for {categoryParam.category}</p>
 
         <div className='mt-2'>
 
-          <button className={'flex items-center space-x-2 text-base font-medium text-gray-700 hover:text-blue-600 transition duration-150 mb-3 focus:outline-none cursor-pointer' } onClick={()=>setisFiltervissible(!isFiltervissible)}>{isFiltervissible?"Show filter":"Hide filter"}</button>
-
-          <div className={`flex flex-wrap gap-3 ${!isFiltervissible ?'visible': 'hidden' }`}>
+          <button className={'flex items-center space-x-2 text-base font-medium text-gray-700 hover:text-blue-600 transition duration-150 mb-3 focus:outline-none cursor-pointer'} onClick={() => setisFiltervissible(!isFiltervissible)}>{isFiltervissible ? "Show filter" : "Hide filter"}</button>
+          {/* if isfiltervisible is true then will hide all filters */}
+          <div className={`flex flex-wrap gap-3 ${!isFiltervissible ? 'visible' : 'hidden'}`}>
             <Link to={'../books/all'}>
-              <div onClick={()=>{setisFiltervissible(true)}} className={'px-4 py-2 rounded-full text-sm font-medium transition duration-200 shadow-sm '+(categoryParam.category ==='all'?"bg-blue-600 text-white hover:bg-blue-300":"bg-gray-100 text-gray-700 hover:bg-gray-200")}>all</div>
+            {/* chnaging isfiltervisible to hidemode so filtered books will be visible */}
+              <div onClick={() => { setisFiltervissible(true) }} className={'px-4 py-2 rounded-full text-sm font-medium transition duration-200 shadow-sm ' + (categoryParam.category === 'all' ? "bg-blue-600 text-white hover:bg-blue-300" : "bg-gray-100 text-gray-700 hover:bg-gray-200")}>all</div>
             </Link>
 
             {
               categories.map((category) => {
                 return (
                   // Go back to the home route and add route again
-                  <Link to={`../books/${category}`} key={category}>
-                    <div onClick={()=>{setisFiltervissible(true)}} className={'px-4 py-2 rounded-full text-sm font-medium transition duration-200 shadow-sm '+(categoryParam.category ===category?"bg-blue-600 text-white hover:bg-blue-300":"bg-gray-100 text-gray-700 hover:bg-gray-200")}>{category}</div>
+                  <Link to={`../books/${category}`} key={category}>\
+                  {/* hiding filter before change of route or category */}
+                    <div onClick={() => { setisFiltervissible(true) }} className={'px-4 py-2 rounded-full text-sm font-medium transition duration-200 shadow-sm ' + (categoryParam.category === category ? "bg-blue-600 text-white hover:bg-blue-300" : "bg-gray-100 text-gray-700 hover:bg-gray-200")}>{category}</div>
                   </Link>
                 )
               })
@@ -104,6 +112,7 @@ function BrowseBooks() {
         <h3 className='text-xl font-bold text-gray-800 mb-6'>Found {renderBooks.length} reults</h3>
 
         {
+          // only showing if books matches search result
           renderBooks.length > 0 ?
             (
               <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
@@ -112,37 +121,38 @@ function BrowseBooks() {
                     return (
                       // Go back to the home route and add route again
                       <Link to={`/book/${book.id}`} key={book.title}>
-                            
-                                 <div key={book.title} className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 transition duration-300 hover:shadow-xl cursor-pointer flex flex-col h-full'>
-                     
-                                   <div className='mb-4 flex justify-center'>
-                                     <img src={book.imageLinks.smallThumbnail} alt={book.title}
-                                 
-                                       className='h-48 w-full object-cover rounded-md shadow-md'
-                                     />
-                                   </div>
-                     
-                                   <div className='flex flex-col flex-grow'>
-                                  
-                                     <h4 className='text-lg font-semibold text-gray-900 truncate'>{book.title}</h4>
-                     
-                                   
-                                     <p className='text-sm text-gray-500 mt-1 truncate'>{book.author}</p>
-                     
-                                     <div className='flex items-center mt-auto pt-2 text-sm'>
-                                       <span className='text-amber-500 font-bold mr-1'>★</span>
-                                       <p>Rating: {book.rating}</p>
-                                     </div>
-                                   </div>
-                     
-                                 </div>
-                               </Link>
+
+                        <div key={book.title} className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 transition duration-300 hover:shadow-xl cursor-pointer flex flex-col h-full'>
+
+                          <div className='mb-4 flex justify-center'>
+                            <img src={book.imageLinks.smallThumbnail} alt={book.title}
+
+                              className='h-48 w-full object-cover rounded-md shadow-md'
+                            />
+                          </div>
+
+                          <div className='flex flex-col flex-grow'>
+
+                            <h4 className='text-lg font-semibold text-gray-900 truncate'>{book.title}</h4>
+
+
+                            <p className='text-sm text-gray-500 mt-1 truncate'>{book.author}</p>
+
+                            <div className='flex items-center mt-auto pt-2 text-sm'>
+                              <span className='text-amber-500 font-bold mr-1'>★</span>
+                              <p>Rating: {book.rating}</p>
+                            </div>
+                          </div>
+
+                        </div>
+                      </Link>
                     )
                   })
                 }
               </div>
             ) :
-            (
+            // if books not found render below div
+            ( 
               <div
                 className='ext-center py-16 bg-white rounded-xl shadow-md border border-gray-100'>
                 <p className='text-2xl font-semibold text-gray-700 mb-2'>No books found.</p>
