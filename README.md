@@ -76,7 +76,7 @@ bookstore/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone <your-repo-link>
+git clone https://github.com/ashreekar/book-store-react.git
 cd todolist
 ```
 
