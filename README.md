@@ -1,16 +1,115 @@
-# React + Vite
+# Book Store Application using React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 📝 GitHub Link
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://github.com/ashreekar/book-store-react
+---
 
-## React Compiler
+## 📌 Overview
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This is a simple **Book store application** built using **React (Vite)**.
+The app allows users to:
 
-## Expanding the ESLint configuration
+* Look for books and filter and search
+* View books details
+* Add books
+* Dynamic routing for books
+* Dynamic routing for category
+* Error route handling
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+It uses **functional components, useState, and redux-toolkit and  react-redux** to handle data flow and state management.
+
+---
+
+## ⚙️ Features
+
+* ✅ A landing page with a welcome message and a list of book categories 
+* ✅ Delete tasks
+* ✅ Display a list of popular books in the form of cards with a link to view more details.
+* ✅ A navigation bar with links to "Home", "Browse Books", and "Add Book" 
+* ✅ Use dynamic routing to filter books by category.
+* ✅ Search bar on the Browse Books page to filter books by title 
+or author. 
+* ✅ A dynamic route that displays detailed information about a selected book.
+* ✅ A form for adding a new book to the library. 
+* ✅ Used redux for state management.
+* ✅ Added a 404 Error page for handling unknown routes.
+* ✅ Clean and responsive UI
+
+---
+
+## 🏗️ Project Structure
+
+```
+bookstore/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── AddBook.jsx
+│   │   ├── BookDetails.jsx
+│   │   ├── BookNotFound.jsx
+│   │   ├── BrowseBooks.jsx
+│   │   ├── ErrorElement.jsx
+│   │   ├── export.components.js
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── LandingPage.jsx
+│   ├── utils/
+│   │   ├── bookData.js
+│   ├── stateUtil/
+│   │   ├── bookAppStore.js
+│   │   ├── bookData.slice.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── index.css
+├── package.json
+├── index.html
+├── vite.config.js
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone <your-repo-link>
+cd todolist
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Run the Application
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+## 🎨 Styling
+
+* Styled with **CSS / Tailwind** for a user-friendly interface.
+
+---
+
+## 📜 Assignment Requirements Covered
+
+✔️ React app created with **Vite**
+✔️ Components: App, AddBook, Header, Footer, LandingPage, ErrorElement, BrowseBooks, BookDetails
+✔️ State using implemented
+✔️ Added dynamic routing for book details and book category filtering
+✔️ Event handling and error message
+✔️ Added search bar for searching by book name and author name
+✔️ Added error page 404 not found page
+✔️ Styled for better user experience
+✔️ README with setup instructions
