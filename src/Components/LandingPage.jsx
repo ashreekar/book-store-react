@@ -48,12 +48,12 @@ function LandingPage() {
   }, [category, firstcategories])
 
   return (
-    <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-white'>
+    <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]'>
 
       {/* Part One Welcome message */}
       <div className='text-center mb-4 py-4 border-b border-b-gray-100'>
         <h2 className='text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2'>Welcome to the Book Shop</h2>
-        <p className='text-lg text-gray-600'> Reading is free unless you are willing to.</p>
+        <p className='text-lg text-gray-600'> Fuel your imagination, no subscription required.</p>
       </div>
 
       {/* Part two categories */}

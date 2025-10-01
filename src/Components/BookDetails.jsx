@@ -3,23 +3,28 @@ import { useParams } from 'react-router-dom'
 // import { booksData } from '../utils/bookData';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux"
+import BookNotFound from './BookNotFound';
 
 function BookDetails() {
-  const booksData=useSelector(store=>store.books.items);
+  const booksData = useSelector(store => store.books.items);
 
   const bookid = useParams();
 
   const [book, setBook] = useState({});
   const [load, setLoad] = useState(true);
+  const [bookNotFound,setBookNotfound]=useState(false);
 
   useEffect(() => {
     const filteredBook = booksData.filter((book) => {
       return book.id === Number(bookid.id);
     });
-
-    setBook(filteredBook[0]);
+    if(filteredBook.length===0){
+      setBookNotfound(true);
+    }
+    setBook(filteredBook.length===0?{}:filteredBook[0]);
     setLoad(false);
   }, [bookid])
+
 
   if (load) {
     return <div className='flex justify-center items-center h-screen'>
@@ -28,6 +33,7 @@ function BookDetails() {
   }
 
   return (
+    bookNotFound?<BookNotFound/>:
     <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
       <div className='flex flex-col md:flex-row bg-white rounded-xl shadow-2xl p-6 md:p-10 border border-gray-100'>
         <div className='md:w-1/3 flex justify-center mb-6 md:mb-8 md:pr-10'>
@@ -42,14 +48,14 @@ function BookDetails() {
 
           <p className='text-xl font-medium text-gray-600 mb-6'><span className='text-blue-600'>{book.author}</span></p>
 
-           <div className='flex items-center space-x-4 mb-6'>
-                    <div className='flex items-center text-lg bg-amber-500 text-white px-3 py-1 rounded-full font-bold shadow-md'>
-                        <span className='mr-1'>★</span>
-                        <span>{book.rating}</span>
-                    </div>
-                    <span className='text-sm text-gray-500'>Rating</span>
+          <div className='flex items-center space-x-4 mb-6'>
+            <div className='flex items-center text-lg bg-amber-500 text-white px-3 py-1 rounded-full font-bold shadow-md'>
+              <span className='mr-1'>★</span>
+              <span>{book.rating}</span>
+            </div>
+            <span className='text-sm text-gray-500'>Rating</span>
 
-                </div>
+          </div>
 
           <h3 className='text-2xl font-semibold text-gray-800 border-b pb-2 mb-4'>Description</h3>
           <p className='text-gray-700 leading-relaxed mb-8'>{book.description}</p>

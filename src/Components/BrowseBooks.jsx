@@ -70,7 +70,7 @@ function BrowseBooks() {
             />
             <button
               onClick={handleSearch}
-              className='px-6 py-2 bg-blue-600 text-white font-medium rounded-r-lg hover:bg-blue-700 transition duration-150 shadow-md'
+              className='cursor-pointer px-6 py-2 bg-blue-600 text-white font-medium rounded-r-lg hover:bg-blue-700 transition duration-150 shadow-md'
             >Search</button>
           </div>
         </div>
