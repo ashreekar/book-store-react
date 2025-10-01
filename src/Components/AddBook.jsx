@@ -88,7 +88,7 @@ function AddBook() {
                     Add New Book to Market
                 </h3>
 
-{/* Setting up form */}
+                {/* Setting up form */}
                 <form
                     className='flex flex-col items-center gap-2'
                     onSubmit={(e) => {
@@ -96,7 +96,7 @@ function AddBook() {
                         addBooktoMarket(e);
                     }}
                 >
-{/* Book name */}
+                    {/* Book name */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="bookName" className='block text-sm font-medium text-gray-700 mb-1'>Book Title</label>
                         <input
@@ -111,7 +111,7 @@ function AddBook() {
                         />
                     </div>
 
-{/* Author name */}
+                    {/* Author name */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="authorName" className='block text-sm font-medium text-gray-700 mb-1'>Author Name</label>
                         <input
@@ -125,7 +125,7 @@ function AddBook() {
                             required
                         />
                     </div>
-{/* Publicattion date */}
+                    {/* Publicattion date */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="publishedDate" className='block text-sm font-medium text-gray-700 mb-1'>Published Date</label>
                         <input
@@ -138,7 +138,7 @@ function AddBook() {
                             required
                         />
                     </div>
-{/* category of book */}
+                    {/* category of book */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="category" className='block text-sm font-medium text-gray-700 mb-1'>Category</label>
                         <select
@@ -159,7 +159,7 @@ function AddBook() {
                             }
                         </select>
                     </div>
-{/* image link can be added */}
+                    {/* image link can be added */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="imageLink" className='block text-sm font-medium text-gray-700 mb-1'>Cover Image Link (URL)</label>
                         <input
@@ -173,7 +173,7 @@ function AddBook() {
                             required
                         />
                     </div>
-{/* rating field out of 5 */}
+                    {/* rating field out of 5 */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="rating" className='block text-sm font-medium text-gray-700 mb-1'>Rating (0.0 to 5.0)</label>
                         <input
@@ -190,7 +190,7 @@ function AddBook() {
                             required
                         />
                     </div>
-{/* description of the book */}
+                    {/* description of the book */}
                     <div className='w-full max-w-lg'>
                         <label htmlFor="description" className='block text-sm font-medium text-gray-700 mb-1'>Brief Description</label>
                         <textarea
@@ -204,7 +204,7 @@ function AddBook() {
                             required
                         ></textarea>
                     </div>
-{/* Button to submit */}
+                    {/* Button to submit */}
                     <button
                         type="submit"
                         className='mt-4 w-full max-w-lg cursor-pointer outline-none bg-blue-600 
@@ -217,7 +217,7 @@ function AddBook() {
 
             </div>
 
-{/* Rendering these componets on validation error  */}
+            {/* Rendering these componets on validation error  */}
             <div className={`${warn ? "fixed inset-0 flex items-center justify-center z-50 bg-opacity-40 backdrop-blur-sm" : "hidden"}`}>
                 <div className="flex flex-col text-black font-semibold rounded-xl p-8 max-w-xs w-full shadow-2xl space-y-4 bg-white">
                     <h4 className='text-2xl font-bold mb-2 flex items-center'>
@@ -226,7 +226,7 @@ function AddBook() {
                     {/* Showingn dynamic reasonn of rejection */}
                     <p>Rejection due to {reasonRejction} field</p>
                     <p>{reasonRejction == "title" ? "Book with title is already exists" : (reasonRejction === "rating" ? "Rating should be within range of 1 to 5" : "Description should have at least 10 characters and at most 200 characters")}</p>
-{/* Before closing setting state of warn false so it is again form */}
+                    {/* Before closing setting state of warn false so it is again form */}
                     <button
                         onClick={() => setWarn(false)}
                         className='rounded-lg bg-blue-600 text-white font-extrabold outline-none cursor-pointer w-full py-2 hover:bg-blue-600 transition duration-150 shadow-md'
@@ -236,7 +236,7 @@ function AddBook() {
                 </div>
             </div>
 
-{/* On sucees div to render */}
+            {/* On sucees div to render */}
             <div className={`${sucess ? "fixed inset-0 flex items-center justify-center z-50 bg-opacity-40 backdrop-blur-sm" : "hidden"}`}>
                 <div className="flex flex-col text-black font-semibold rounded-xl p-8 max-w-xs w-full shadow-2xl space-y-4 bg-white">
                     <h4 className='text-2xl font-bold mb-2 flex items-center'>

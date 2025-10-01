@@ -39,7 +39,7 @@ function BookDetails() {
     <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
       <div className='flex flex-col md:flex-row bg-white rounded-xl shadow-2xl p-6 md:p-10 border border-gray-100'>
         <div className='md:w-1/3 flex justify-center mb-6 md:mb-8 md:pr-10'>
-          <img src={book.imageLinks.thumbnail} alt={book.title}
+          <img src={book.imageLinks.thumbnail} alt={book.title}  onError={(e)=>e.target.src="/image.png"}
             className='w-full max-w-xs md:max-w-full h-auto object-cover roundeed-lg shadow-xl'
           />
         </div>

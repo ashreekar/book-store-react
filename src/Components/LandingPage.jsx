@@ -25,7 +25,7 @@ function LandingPage() {
 
     // setting categories to unique category
     setcategory([...uniqueCategory]);
-  }, [])
+  }, [booksData])
 
   // Fetching books based on change in categories in home page
   useEffect(() => {
@@ -96,12 +96,12 @@ function LandingPage() {
                 // Adding link to separate book details
                 <Link to={`/book/${book.id}`} key={book.title}>
 
-                  <div key={book.title} className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 transition duration-300 hover:shadow-xl cursor-pointer flex flex-col h-full'>
+                  <div className='bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 p-4 transition duration-300 hover:shadow-xl cursor-pointer flex flex-col h-full'>
 
                     <div className='mb-4 flex justify-center'>
                       {/* two types of thubnail exists but taking input as one */}
-                      <img src={book.imageLinks.smallThumbnail} alt={book.title}
-
+                      <img src={book.imageLinks.smallThumbnail || "/image.png"} alt={book.title}
+                      onError={(e)=>e.target.src="/image.png"}
                         className='h-48 w-full object-cover rounded-md shadow-md'
                       />
                     </div>

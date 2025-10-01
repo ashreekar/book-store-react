@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom'
 function Header() {
   return (
     <header className='flex w-full h-16 bg-white border-b border-gray-200 px-4 sm:px-8 items-center justify-between'>
-        <div>
+        <Link to={'/'}> 
+
             <h1 className='text-xl font-medium text-gray-800 tracking-tight'>Book Store</h1>
-        </div>
+        </Link>
 
         <nav>
           {/* Just added link to different routes like books with default category as all and add book and home */}

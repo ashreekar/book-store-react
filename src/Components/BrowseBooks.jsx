@@ -97,7 +97,7 @@ function BrowseBooks() {
               categories.map((category) => {
                 return (
                   // Go back to the home route and add route again
-                  <Link to={`../books/${category}`} key={category}>\
+                  <Link to={`../books/${category}`} key={category}>
                   {/* hiding filter before change of route or category */}
                     <div onClick={() => { setisFiltervissible(true) }} className={'px-4 py-2 rounded-full text-sm font-medium transition duration-200 shadow-sm ' + (categoryParam.category === category ? "bg-blue-600 text-white hover:bg-blue-300" : "bg-gray-100 text-gray-700 hover:bg-gray-200")}>{category}</div>
                   </Link>
@@ -126,7 +126,7 @@ function BrowseBooks() {
 
                           <div className='mb-4 flex justify-center'>
                             <img src={book.imageLinks.smallThumbnail} alt={book.title}
-
+ onError={(e)=>e.target.src="/image.png"}
                               className='h-48 w-full object-cover rounded-md shadow-md'
                             />
                           </div>
